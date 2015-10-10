@@ -38,7 +38,7 @@ public class MainGameClass extends ApplicationAdapter {
         }
 
         mainCharacter.move();
-        boss.update(false);
+        boss.update(boss.detectHit(mainCharacter.bulletArrayList));
 
         batch.begin();
         drawBackground(batch);
@@ -56,10 +56,10 @@ public class MainGameClass extends ApplicationAdapter {
 
     public void drawBackground(SpriteBatch batch) {
         Texture frontWall = new Texture(Gdx.files.internal("frontWall.png"));
-        Texture backWall = new Texture(Gdx.files.internal("backWall.png"));
+        Texture backWall = new Texture(Gdx.files.internal("backwall.png"));
         Texture floor = new Texture(Gdx.files.internal("floor.png"));
         Texture leftWall = new Texture(Gdx.files.internal("leftWall.png"));
-        Texture rightWall = new Texture(Gdx.files.internal("rightwall.png"));
+        Texture rightWall = new Texture(Gdx.files.internal("rightWall.png"));
         Texture corner = new Texture(Gdx.files.internal("corner.png"));
 
         Sprite frontWallSprite = new Sprite(frontWall);

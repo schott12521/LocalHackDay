@@ -6,6 +6,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mhllhd.thebestgameever.MainGameClass;
 
+import java.util.ArrayList;
+
 public class Boss {
 
     private Sprite sprite;
@@ -27,8 +29,19 @@ public class Boss {
         health = 100;
     }
 
+    public boolean detectHit(ArrayList bullets) {
+        for (int i = 0; i < bullets.size(); i++) {
+            if (((Bullet) bullets.get(i)).getyPos() >= yPos - 200 && ((Bullet) bullets.get(i)).getyPos() <= yPos)
+                if (((Bullet) bullets.get(i)).getxPos() <= xPos && ((Bullet) bullets.get(i)).getxPos() >= xPos - 200)
+                    return true;
+        }
+        return false;
+    }
+
     public void update(boolean hit) {
-        if (hit) health -= 13;
+        if (hit) {
+            health -= 13;
+        }
         if (direction && xPos - 200 <= 0)
             direction = false;
         else if (!direction && xPos + 200 >= MainGameClass.WIDTH)
@@ -39,6 +52,9 @@ public class Boss {
         else
             xPos += 2 * velocity;
         sprite.setPosition(xPos, yPos - 230);
+        if (health <= 0) {
+            sprite.setPosition(-100000, -100000);
+        }
     }
 
     public int getyPos() {
