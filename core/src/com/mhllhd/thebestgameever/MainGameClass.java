@@ -6,6 +6,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import entities.Boss;
 import entities.Player;
 import entities.Bullet;
 import screen.ScreenManager;
@@ -17,16 +18,14 @@ public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
 
     public static int WIDTH = 800 * 3 / 2, HEIGHT = 480 * 3 / 2;
-    private Texture texture;
-    private Sprite sprite;
     private Player mainCharacter;
-
-    private int xPos = WIDTH / 2, yPos = HEIGHT / 2;
+    private Boss boss;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
         mainCharacter = new Player(batch);
+        boss = new Boss(batch);
 	}
 
 	@Override
@@ -39,6 +38,7 @@ public class MainGameClass extends ApplicationAdapter {
         }
 
         mainCharacter.move();
+        boss.update(false);
 
         batch.begin();
         drawBackground(batch);
@@ -48,7 +48,8 @@ public class MainGameClass extends ApplicationAdapter {
             temp.update();
             batch.draw(temp.getSprite(), temp.getxPos() + 25, temp.getyPos() + 25, 50, 50);
         }
-
+//        batch.draw(boss.getSprite(), boss.getxPos(), boss.getyPos());
+        boss.getSprite().draw(batch);
         batch.end();
 
 	}
