@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import entities.Player;
 import screen.Screen;
 import screen.ScreenManager;
 
@@ -19,14 +20,14 @@ public class MainGameClass extends ApplicationAdapter {
     public static int WIDTH = 800, HEIGHT = 480;
     private Texture texture;
     private Sprite sprite;
+    private Player mainCharacter;
 
     private int xPos = WIDTH / 2, yPos = HEIGHT / 2;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-        texture = new Texture(Gdx.files.internal("littleGuy.png"));
-        sprite = new Sprite(texture);
+        mainCharacter = new Player(batch);
 	}
 
 	@Override
@@ -38,17 +39,10 @@ public class MainGameClass extends ApplicationAdapter {
             ScreenManager.getCurrentScreen().render(batch);
         }
 
-        if (Gdx.input.isKeyPressed(Input.Keys.W))
-            yPos += 2;
-        if (Gdx.input.isKeyPressed(Input.Keys.S))
-            yPos -= 2;
-        if (Gdx.input.isKeyPressed(Input.Keys.A))
-            xPos -= 2;
-        if (Gdx.input.isKeyPressed(Input.Keys.D))
-            xPos += 2;
+        mainCharacter.move();
 
         batch.begin();
-        batch.draw(texture, xPos, yPos);
+        batch.draw(mainCharacter.getSprite(), mainCharacter.getxPos(), mainCharacter.getyPos(), 100, 100);
         batch.end();
 
 	}
