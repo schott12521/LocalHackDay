@@ -9,7 +9,7 @@ import com.mhllhd.thebestgameever.MainGameClass;
 
 public class Player {
 
-    private Sprite sprite, spriteLeft, spriteRight, spriteUp, displaySwipe;
+    private Sprite sprite, spriteLeft, spriteRight, spriteUp, displaySprite;
     private Texture texture, textureLeft, textureRight, textureUp;
     private SpriteBatch batch;
 
@@ -24,48 +24,52 @@ public class Player {
         spriteRight = new Sprite(textureRight);
         textureUp = new Texture(Gdx.files.internal("littleGuyUp.png"));
         spriteUp = new Sprite(textureUp);
+
+        displaySprite = sprite;
         batch = batchIn;
     }
 
+    // TODO handle diagonal moving...
     public void move() {
-        if (Gdx.input.isKeyPressed(Input.Keys.W)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.W) && canPlayerMove(3)) {
             yPos += 2;
+            displaySprite = spriteUp;
+            return;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.S)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.S) && canPlayerMove(4)) {
             yPos -= 2;
-            texture = new Texture(Gdx.files.internal("littleGuy.png"));
+            displaySprite = sprite;
+            return;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.A)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.A) && canPlayerMove(2)) {
             xPos -= 2;
+            displaySprite = spriteLeft;
+            return;
         }
-        if (Gdx.input.isKeyPressed(Input.Keys.D)) {
+        if (Gdx.input.isKeyPressed(Input.Keys.D) && canPlayerMove(1)) {
             xPos += 2;
+            displaySprite = spriteRight;
+            return;
         }
+        displaySprite = sprite;
 
     }
 
-    public void setSprite(Sprite sprite) {
-        this.sprite = sprite;
-    }
-
-    public void setTexture(Texture texture) {
-        this.texture = texture;
-    }
-
-    public void setBatch(SpriteBatch batch) {
-        this.batch = batch;
+    public boolean canPlayerMove(int direction) {
+        System.out.println("xPos " + xPos + " yPos " + yPos);
+        if (direction == 1 && xPos + 100 >= MainGameClass.WIDTH) return false;
+        if (direction == 2 && xPos <= 0) return false;
+        if (direction == 3 && yPos + 100 >= MainGameClass.HEIGHT) return false;
+        if (direction == 4 && yPos <= 0) return false;
+        return true;
     }
 
     public Sprite getSprite() {
-        return sprite;
+        return displaySprite;
     }
 
     public Texture getTexture() {
         return texture;
-    }
-
-    public SpriteBatch getBatch() {
-        return batch;
     }
 
     public int getxPos() {

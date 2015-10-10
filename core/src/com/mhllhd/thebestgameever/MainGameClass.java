@@ -52,11 +52,11 @@ public class MainGameClass extends ApplicationAdapter {
         if (ScreenManager.currentScreen != null) {
             ScreenManager.getCurrentScreen().dispose();
         }
-        texture.dispose();
+        mainCharacter.getTexture().dispose();
         batch.dispose();
     }
 
-    public void reize() {
+    public void resize() {
         if (ScreenManager.getCurrentScreen() != null) {
             ScreenManager.getCurrentScreen().resize(WIDTH, HEIGHT);
         }
