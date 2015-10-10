@@ -2,6 +2,7 @@ package com.mhllhd.thebestgameever;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -18,6 +19,8 @@ public class MainGameClass extends ApplicationAdapter {
     public static int WIDTH = 800, HEIGHT = 480;
     private Texture texture;
     private Sprite sprite;
+
+    private int xPos = WIDTH / 2, yPos = HEIGHT / 2;
 	
 	@Override
 	public void create () {
@@ -35,8 +38,17 @@ public class MainGameClass extends ApplicationAdapter {
             ScreenManager.getCurrentScreen().render(batch);
         }
 
+        if (Gdx.input.isKeyPressed(Input.Keys.W))
+            yPos += 2;
+        if (Gdx.input.isKeyPressed(Input.Keys.S))
+            yPos -= 2;
+        if (Gdx.input.isKeyPressed(Input.Keys.A))
+            xPos -= 2;
+        if (Gdx.input.isKeyPressed(Input.Keys.D))
+            xPos += 2;
+
         batch.begin();
-        sprite.draw(batch);
+        batch.draw(texture, xPos, yPos);
         batch.end();
 
 	}
