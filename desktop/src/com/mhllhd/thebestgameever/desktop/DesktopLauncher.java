@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "Hackathon Game";
-		config.useGL30 = true;
+		config.useGL30 = false;
         config.width = MainGameClass.WIDTH;
         config.height = MainGameClass.HEIGHT;
         new LwjglApplication(new MainGameClass(), config);

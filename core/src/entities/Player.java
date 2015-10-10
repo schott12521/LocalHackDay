@@ -13,7 +13,7 @@ public class Player {
     private Texture texture, textureLeft, textureRight, textureUp;
     private SpriteBatch batch;
 
-    private int xPos = MainGameClass.WIDTH / 2, yPos = MainGameClass.HEIGHT / 2;
+    private int xPos = MainGameClass.WIDTH / 2 - 50, yPos = MainGameClass.HEIGHT / 2 - 50;
 
     public Player(SpriteBatch batchIn) {
         texture = new Texture(Gdx.files.internal("littleGuy.png"));
