@@ -7,6 +7,8 @@ import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mhllhd.thebestgameever.MainGameClass;
 
+import java.util.ArrayList;
+
 public class Player {
 
     private Sprite sprite, spriteLeft, spriteRight, spriteUp, displaySprite;
@@ -14,6 +16,8 @@ public class Player {
     private SpriteBatch batch;
 
     private int xPos = MainGameClass.WIDTH / 2 - 50, yPos = MainGameClass.HEIGHT / 2 - 50;
+
+    public ArrayList bulletArrayList = new ArrayList();
 
     public Player(SpriteBatch batchIn) {
         texture = new Texture(Gdx.files.internal("littleGuy.png"));
@@ -31,6 +35,10 @@ public class Player {
 
     // TODO handle diagonal moving...
     public void move() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.SPACE)) {
+            Bullet bullet = new Bullet(this.xPos, this.yPos, batch);
+            bulletArrayList.add(bullet);
+        }
         if (Gdx.input.isKeyPressed(Input.Keys.W) && canPlayerMove(3)) {
             yPos += 2;
             displaySprite = spriteUp;
@@ -56,7 +64,6 @@ public class Player {
     }
 
     public boolean canPlayerMove(int direction) {
-        System.out.println("xPos " + xPos + " yPos " + yPos);
         if (direction == 1 && xPos + 100 >= MainGameClass.WIDTH) return false;
         if (direction == 2 && xPos <= 0) return false;
         if (direction == 3 && yPos + 100 >= MainGameClass.HEIGHT) return false;

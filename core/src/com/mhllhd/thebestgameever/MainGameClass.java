@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import entities.Bullet;
 import entities.Player;
 import screen.Screen;
 import screen.ScreenManager;
@@ -43,6 +44,11 @@ public class MainGameClass extends ApplicationAdapter {
 
         batch.begin();
         batch.draw(mainCharacter.getSprite(), mainCharacter.getxPos(), mainCharacter.getyPos(), 100, 100);
+        for (int i = 0; i < mainCharacter.bulletArrayList.size(); i++) {
+            Bullet temp = ((Bullet) mainCharacter.bulletArrayList.get(i));
+            temp.update();
+            batch.draw(temp.getSprite(), temp.getxPos(), temp.getyPos(), 50, 50);
+        }
         batch.end();
 
 	}
