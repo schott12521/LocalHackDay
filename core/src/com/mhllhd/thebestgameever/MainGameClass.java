@@ -7,7 +7,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 
 /**
- * This should be the root game class. adsf
+ * This should be the root game class. Are we commited?
  */
 public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
