@@ -16,7 +16,7 @@ import screen.ScreenManager;
 public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
 
-    public static int WIDTH = 800, HEIGHT = 480;
+    public static int WIDTH = 800 * 3 / 2, HEIGHT = 480 * 3 / 2;
     private Texture texture;
     private Sprite sprite;
     private Player mainCharacter;
