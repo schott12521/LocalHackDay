@@ -2,17 +2,13 @@ package com.mhllhd.thebestgameever;
 
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import entities.Bullet;
 import entities.Player;
-import screen.Screen;
+import entities.Bullet;
 import screen.ScreenManager;
-
-import javax.xml.soap.Text;
 
 /**
  * This should be the root game class. Are we commited? Yes!
